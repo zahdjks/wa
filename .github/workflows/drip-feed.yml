@@ -1,0 +1,11 @@
+name: Drip Feed
+on:
+  schedule:
+    - cron: '0 * * * *'
+jobs:
+  send:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Order
+        run: |
+          curl -X POST "https://smmcpan.com/api/v2" -d "key=${{ secrets.API_KEY }}&action=add&service=1&link=${{ secrets.TARGET_URL }}&quantity=100"
